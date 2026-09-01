@@ -593,8 +593,10 @@ jobs:
           wget https://github.com/$GITHUB_REPOSITORY/raw/refs/heads/$GITHUB_REF_NAME/lib/libfakestat.so
           wget https://github.com/$GITHUB_REPOSITORY/raw/refs/heads/$GITHUB_REF_NAME/lib/libfaketimeMT.so
           chmod 777 ./*.so
-          export FAKESTAT="2025-05-25 12:00:00"
-          export FAKETIME="@2025-05-25 13:00:00"
+          FAKESTAT_D=$(date -d "722 hours ago" +"%Y-%m-%d %H:%M:%S")
+          FAKETIME_D=$(date -d "720 hours ago" +"%Y-%m-%d %H:%M:%S")
+          export FAKESTAT="$FAKESTAT_D"
+          export FAKETIME="@$FAKETIME_D"
           echo "FAKESTAT=$FAKESTAT" >> $GITHUB_ENV
           echo "FAKETIME=$FAKETIME" >> $GITHUB_ENV
           SO_DIR=$(pwd)
